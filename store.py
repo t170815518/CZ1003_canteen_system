@@ -10,7 +10,7 @@ store_OH = {
     "store_3" : ["7am-9pm", "9am-7pm", "9am-6pm"],
 }
 
-
+#function for accessing menu of stores
 def check_menu():  
     while True:
         try:
@@ -30,6 +30,7 @@ def check_menu():
         print("Valid integer: 1 - 3 ") 
         check_menu()
 
+#function for accessing Operating hours of stores
 def check_OH():
     while True:
         try:
@@ -49,6 +50,7 @@ def check_OH():
         print("Valid integer: 1 - 3 ") 
         check_menu()
 
+#start of function
 def start():
     while True:
         try:
