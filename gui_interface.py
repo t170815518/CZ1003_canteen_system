@@ -13,9 +13,7 @@ def display():
 if __name__== '__main__':
     time_chosen = (11, 10, 2019, 15, 30)  # 15:00
     # stalls_list = dataBase.keys()
-    stalls_list = ['Cantonese Roast Duck', 'Salad', 'Soup Delight']
-    food_list = ['Roast Duck Rice']
-    operating_hour = ('9:30', '21:00')
+
 
 window = tkinter.Tk()
 window.title('Real-time Canteen Information System')
