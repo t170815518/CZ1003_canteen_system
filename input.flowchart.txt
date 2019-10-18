@@ -1,0 +1,36 @@
+```flow
+st=>start: Start
+filter=>operation: Select information(e.g. stalls and menus) that satisfys the conditions 
+display=>inputoutput: Display the selected stalls
+change_time=>condition: Does User want to change time?
+input_time=>inputoutput: User Inputs the time 
+
+time_changed=>operation: Change time in the application
+select_list=>condition: Does User select particular stall?
+display_stall=>inputoutput: Display the selected stall's information(e.g. menu, operating hours)
+queue=>condition: Does User want to calculate the queue time? 
+no_people=>inputoutput: User inputs the number of people
+calculation=>operation: Calculate the predicted queue time 
+display_time=>inputoutput: Display the result 
+see_all=>condition: Does User want to see all information(e.g. all stalls and menus)
+display_all=>inputoutput: Display all information
+quit=>condition: Does User want to quit the application?
+
+e=>end: End
+
+st->filter->display->change_time
+change_time(yes)->input_time->time_changed
+time_changed(left)->filter
+change_time(no)->select_list
+select_list(yes)->display_stall->queue
+select_list(no)->see_all
+see_all(yes)->display_all(left)->change_time
+see_all(no)->quit
+quit(yes)->e
+quit(no)->change_time
+queue(yes)->no_people->calculation->display_time(left)->change_time
+queue(no)->change_time
+
+
+```
+
