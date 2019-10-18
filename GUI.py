@@ -24,6 +24,7 @@ def change_time():
 
 def to_current():
     TIME.set(datetime.now().strftime('%Y-%m-%d %H:%M'))
+    tkinter.messagebox.showinfo('Complete!', 'The time has been changed to the current time.')
 
 
 def queue_time():
