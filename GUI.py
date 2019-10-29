@@ -3,6 +3,13 @@ from datetime import datetime
 import tkinter.messagebox
 
 
+def time_converter():
+    global TIME
+    t = TIME.get()
+    t_list = t.split('-')
+    return (t_list[0], t_list[1], t_list[2], t_list[3], t_list[4])
+
+
 def time_window():
     global e, time_win
     time_win = Toplevel(window)
@@ -79,32 +86,27 @@ stalls = Listbox(window, selectmode='SINGLE', listvariable=stall_list)
 
 # Information Display Area
 t1 = Text(window)
-t1.insert('end', 'Information of the Stall\n')
+info_heading = Label(master=window, text='Information of Stall')
 t1.insert('end', '\n')
 t1.insert('end', 'Menu\n')
 for x in menu:
     t1.insert('end', x+'\n')
 t1.insert('end', '\n')
-t1.insert('end', 'Operating Hour: {}:{}'.format(operating_hour[0], operating_hour[1]))
+t1.insert('end', 'Operating Hour: {}-{}'.format(operating_hour[0], operating_hour[1]))
 t1.config(state=DISABLED)
 
 # queue time
 queue = Button(window, text='Calculate Queue Time', command=queue_time)
 
 # See all stalls' information
-see_all = Button(master=window, text='See All Stall\'s Infomation', command=SeeAll)
-# pack
-time.pack()
-time_change.pack()
-back_to_current.pack()
-stalls.pack()
-t1.pack()
-queue.pack()
-see_all.pack()
+see_all = Button(master=window, text='See All Stall\'s Information', command=SeeAll)
+
+# layout
+
 window.mainloop()
 
 # dynamic update of information
-#while True:
+# while True:
 #    sleep(60)
 #    time['text'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 #    window.update()
