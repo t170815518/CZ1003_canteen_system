@@ -6,7 +6,6 @@ Yong Tau Foo
 7:00-21:00
 7:30-15:30
 Closed
-PH
 //
 Chicken Rice 
 7:00-21:00
@@ -61,6 +60,4 @@ Starbuck's Coffee
 7:00-22:00
 7:00-17:00
 7:00-17:00
-EP
-//
-McDonald's 
+EP 7:00-0:00
