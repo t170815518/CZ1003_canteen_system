@@ -14,7 +14,7 @@ store_OH = {
 
 
 
-def check_menu():  
+def get_menu():  
     while True:
         try:
             user_input_menu = int(input("Which store's menu would you like to check? (Enter: 1,2 or 3) : "))
@@ -31,9 +31,9 @@ def check_menu():
         print(store_menu["store_3"])
     else:
         print("Valid integer: 1 - 3 ") 
-        check_menu()
+        get_menu()
 
-def check_OH():
+def get_OH():
     while True:
         try:
             user_input_OH = int(input("Which store's operating hours would you like to check? (Enter 1,2 or 3) : "))
@@ -56,7 +56,7 @@ def check_OH():
         print('PH/Recess Week: ' , store_OH["store_3"][2])
     else:
         print("Valid integer: 1 - 3 ") 
-        check_menu()
+        get_OH()
 
 def start():
     while True:
@@ -68,9 +68,9 @@ def start():
             print("Valid integer: 1 - 2 ")
             continue
     if user_input_start == 1:
-        check_menu()
+        get_menu()
     elif user_input_start == 2:
-        check_OH()
+        get_OH()
     else:
         print("Valid integer: 1 - 2 ")
         start()
