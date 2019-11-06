@@ -4,10 +4,7 @@ import tkinter.messagebox
 stall_dict = {}
 ep_dict = {}
 pb_dict = {}
-# public holiday 2020 at Singapore
-public_holiday = [(1, 1), (1, 25), (1, 26), (4, 10), (5, 1), (5, 7), (5, 23), (5, 24), (7, 30), (7, 31),
-                  (8, 10), (11, 14), (12, 25)]
-exameination_period = [(x,y) for x in range(11,13) for y in range(1,32)]
+
 
 with open('database.txt', 'r') as f:
     everything = f.read()
@@ -40,17 +37,24 @@ def get_stalls(time):  # time tuple(year, month, day, hour, minute, weekday):
     hour = time[3]
     minute = time[4]
     weekday = time[5]
+    tmp = pb_dict
 
     def logic_check():  # Error Handling
+        def month_day_check(month, day):  # Tan Wee Li
+            pass
+
         if year <= 1991 or not(isinstance(year, int)):
             tkinter.messagebox.showinfo('Error!', 'Please input the valid year.')
         if not(isinstance(month, int) and 1<=month<=12):
             tkinter.messagebox.showinfo('Error!', 'Please input the valid month.')
-        if isinstance(day, int):
-        else:
+        if not(isinstance(day, int) and month_day_check(month, day)):
             tkinter.messagebox.showinfo('Error!', 'Please input the valid month.')
+    def public_holiday_check():
+        if (month, day) in public_holiday:
+            return True
     logic_check()
-            
+    if public_holiday_check():
+
 
 if __name__ == '__main__':
     get_stalls ((0, 0, 0, 0, 0, 0, 0))

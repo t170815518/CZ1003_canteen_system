@@ -1,7 +1,6 @@
 from tkinter import *
 from datetime import datetime
 import tkinter.messagebox
-# from gui_commands import change_time, back_time,view_this, view_all, view_all_m, queue_time
 
 
 def change_time():
@@ -20,7 +19,7 @@ def change_time():
 
     w = Toplevel(window)
     w.title('Change Time Window')
-    l = Label(master=w, text='Please input the time (yyyy-mm-dd-hh-min  e.g 2019-10-23-12-00)')
+    l = Label(master=w, text='Please input the time (yyyy-mm-dd-hh-min  e.g 2000-10-23-00-00)')
     l.pack()
     inp = Entry(master=w)
     inp.pack()
@@ -42,12 +41,12 @@ def view_this():
     heading = Label(master=info, text='Menu')
     heading.pack()
     a = Listbox(master=info)
-    m = get_menu()  # Tan Wee Li
+    m = get_menu(name_selected, tttt)  # name_selected: the name of the function, tttt: time
     display = Listbox(master=info)
     for x in m:
         display.insert('end', x)
     display.pack()
-    op = get_op()  # Tan Wee Li
+    op = get_op()  # function
     op_label = Label(master=info, text='Operating Hour: '+op, font='Georgia 16 bold ')
     op_label.pack()
 
