@@ -1,10 +1,11 @@
 from tkinter import *
 from datetime import datetime
 import tkinter.messagebox
+from stall import get_stall
 
 
 def change_time():
-    def confirm_to_change():
+    def confirm_to_change_time():
         lst = inp.get().split('-')
         print(lst)
         for i in range(5):
@@ -12,19 +13,21 @@ def change_time():
         TIME[5] = datetime.strptime(lst[0]+' '+lst[1]+' '+lst[2], '%Y %m %d').strftime('%A')
         time_str.set('{:04d}-{:02d}-{:02d} {:02d}:{:02d}, {:}'.format(TIME[0], TIME[1], TIME[2], TIME[3], TIME[4],
                                                                       TIME[5]))
-        tkinter.messagebox.showinfo('Complete!', 'Time has been changed successfully!')
+        if get_stall(TIME):
+            tkinter.messagebox.showinfo('Complete!', 'Time has been changed successfully!')
         w.destroy()
+
         def update_info():
             pass
 
-    w = Toplevel(window)
-    w.title('Change Time Window')
-    l = Label(master=w, text='Please input the time (yyyy-mm-dd-hh-min  e.g 2000-10-23-00-00)')
-    l.pack()
-    inp = Entry(master=w)
-    inp.pack()
-    confirm = Button(master=w, text='Confirm', command=confirm_to_change)
-    confirm.pack()
+    w_time = Toplevel(window)
+    w_time.title('Change Time Window')
+    l_time = Label(master=w_time, text='Please input the time (yyyy-mm-dd-hh-min  e.g 2000-10-23-00-00)')
+    l_time.pack()
+    input_time = Entry(master=w_time)
+    input_time.pack()
+    confirm_time = Button(master=w_time, text='Confirm', command=confirm_to_change_time)
+    confirm_time.pack()
 
 
 def back_time():
@@ -57,6 +60,7 @@ def view_all():
                                           time.')
     time_str.set('State: Viewing All Stalls and Menus')
     s_list = get_all_s()
+
     def update_s():
         for widget in stalls.winfo_children():
             widget.destroy()
@@ -104,39 +108,40 @@ def queue_time():
     confirm.pack()
 
 
-if __name__ == '__main__':
-    s_list = ['Cantonese Roast Duck Rice', 'Salad', 'Soup Delight', 'McDonald\'s']
-
-    def get_menu():
-        if s.get(s.curselection()) == 'Cantonese Roast Duck Rice':
-            return ['Roast Duck Rice', 'Roast Duck Noodle', 'Cha Siew Rice']
-        elif s.get(s.curselection()) == 'Salad':
-            return ['Onion', 'Pasta', 'Egg']
-
-    def get_menu_all():
-        return ['1', '2', '3', '4', '5']
-
-
-    def get_op():
-        if s.get(s.curselection())== 'Cantonese Roast Duck Rice':
-            return '9:00-21:00'
-        elif s.get(s.curselection()) == 'Salad':
-            return '9:30-20:00'
-
-
-    def get_all_s():
-        return ['Cantonese Roast Duck Rice', 'Salad', 'Soup Delight', 'McDonald\'s', 'Chicken Rice']
-
-
-    def queue(num):
-        return 8*num
+# if __name__ == '__main__':
+#     s_list = ['Cantonese Roast Duck Rice', 'Salad', 'Soup Delight', 'McDonald\'s']
+#
+#     def get_menu():
+#         if s.get(s.curselection()) == 'Cantonese Roast Duck Rice':
+#             return ['Roast Duck Rice', 'Roast Duck Noodle', 'Cha Siew Rice']
+#         elif s.get(s.curselection()) == 'Salad':
+#             return ['Onion', 'Pasta', 'Egg']
+#
+#     def get_menu_all():
+#         return ['1', '2', '3', '4', '5']
+#
+#
+#     def get_op():
+#         if s.get(s.curselection())== 'Cantonese Roast Duck Rice':
+#             return '9:00-21:00'
+#         elif s.get(s.curselection()) == 'Salad':
+#             return '9:30-20:00'
+#
+#
+#     def get_all_s():
+#         return ['Cantonese Roast Duck Rice', 'Salad', 'Soup Delight', 'McDonald\'s', 'Chicken Rice']
+#
+#
+#     def queue(num):
+#         return 8*num
 
 
 window = Tk()
 window.title('Real Time Canteen Information System')
 window.resizable(False, False)
-# variable 
-TIME = [2000, 10, 23, 12, 00, 'Monday'] # [yyyy, mm, dd, hh, min, weekday()]
+# variable
+z = datetime.now()
+TIME = [z.year, z.month, z.day, z.hour, z.minute, z.weekday()]  # [yyyy, mm, dd, hh, min, weekday()]
 # s_list = get_stalls(TIME.year, TIME.month, TIME.day)  # Tan Wee Li
 
 # area 1.1, logo 
@@ -171,8 +176,12 @@ s_title.set('Open Stalls at Displayed Time')
 title_s = Label(master=stalls, textvariable=s_title, font='Georgia 18 bold ')
 title_s.pack()
 s = Listbox(master=stalls, selectmode='SINGLE')
-for x in s_list:
-    s.insert('end', x)
+s_list = get_stall(TIME)
+if s_list:
+    for x in s_list:
+        s.insert('end', x)
+else:
+    tkinter.messagebox.showinfo('Notification', 'Currently there is no open stall.')
 s.pack()
 
 # area 2.2, information display area
