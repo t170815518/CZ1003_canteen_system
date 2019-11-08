@@ -1,0 +1,33 @@
+Yong Tau Foo
+Bee Hoon
+Kuay Teow
+Laska
+//
+Chicken Rice
+Steamed Chicken Rice
+Roasted Chicken Rice
+//
+Hand-made Noodles
+Sliced Fish Soup
+Ban Mian
+Tom Yam Seafood Noodles
+//
+Cantonese Roast Duck
+Specialty Duck Rice
+Duck Noodles
+Roasted Pork Rice
+//
+Western Food
+Chicken Chop
+Chicken Cutlet
+Fish and Chips
+//
+Salad
+Chicken Salad
+Fish Salad
+Salmon Salad
+//
+Starbuck's Coffee
+Americano
+Latte
+Cappucino
