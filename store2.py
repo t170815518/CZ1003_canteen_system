@@ -1,5 +1,6 @@
-store_menu = {
-    "Yong Tau Foo": {"morning": "Bee Hoon, Kuay Teow", "afternoon": "Laska", "monday": "Satay", "wednesday": ""},
+import pickle
+
+store_menu = {"Yong Tau Foo": {"morning": "Bee Hoon, Kuay Teow", "afternoon": "Laska", "monday": "Satay", "wednesday": ""},
     "Chicken Rice": {"morning": "Steamed Chicken Rice", "afternoon": "Roasted Chicken Rice", "monday": "",
                      "wednesday": "Specialty Chicken Rice Set"},
     "Hand-made Noodles": {"morning": "Sliced Fish Soup, Ban Mian", "afternoon": "Tom Yam Seafood Noodles", "monday": "",
@@ -12,7 +13,9 @@ store_menu = {
     "Starbuck's Coffee": {"morning": "Americano, Latte, Cappucino", "afternoon": "", "monday": "", "wednesday": ""}}
 
 
-def get_menu(store_name, time):  # return list of menu available at the time
+def get_menu(store_name, time, mode=0):  # return list of menu available at the time
+    if mode == 1:
+        return store_menu[store_name].values()
     if store_name in store_menu.keys():
         if 6 <= time[3] <= 10 and time[5] == 1:  # Morning menu
             x = store_menu[store_name]["morning"] + store_menu[store_name]["monday"]
@@ -40,4 +43,4 @@ def get_menu(store_name, time):  # return list of menu available at the time
 if __name__ == '__name__':
     store_name = "Chicken Rice"
     time = (2019, 11, 7, 11, 29, 1)  # yyyy,mm,dd,hh,mm,day
-    print(get_menu(store_name, time))
+    print(get_menu(store_name, time, 0))
