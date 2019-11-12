@@ -52,7 +52,7 @@ def back_to_current(): # author: Tang Yuting
     # update the information
     stall_update()
     menu_initialization()
-    wkd = datetime.strptime(TIME[0] + ' ' + TIME[1] + ' ' + TIME[2], '%Y %m %d').strftime('%A')
+    wkd = datetime.strptime(str(TIME[0]) + ' ' + str(TIME[1]) + ' ' + str(TIME[2]), '%Y %m %d').strftime('%A')
     time_str.set('{:4d}-{:2d}-{:2d} {:02d}:{:02d} {}'.format(TIME[0], TIME[1], TIME[2], TIME[3], TIME[4], wkd))
 
 
