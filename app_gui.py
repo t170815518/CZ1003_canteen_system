@@ -1,4 +1,3 @@
-#Main program by Yuting
 from tkinter import *
 from datetime import datetime
 import tkinter.messagebox
