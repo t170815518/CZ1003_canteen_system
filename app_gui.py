@@ -1,3 +1,4 @@
+
 from tkinter import *
 from datetime import datetime
 import tkinter.messagebox
@@ -6,12 +7,13 @@ from queuetime import waiting_time
 from store2 import get_menu
 
 
-def change_time():
+# module author: Tang Yuting
+def change_time():  # author: Tang Yuting
     global mode, m_mode
 
     def confirm_to_change_time():
         tmp_list = input_time.get().split('-')  # ['2000', '10', '23', '00', '00']
-        try:
+        try:  # exception handling
             for i in range(5):
                 TIME[i] = int(tmp_list[i])
             TIME[5] = int(datetime.strptime(tmp_list[0]+' '+tmp_list[1]+' '+tmp_list[2], '%Y %m %d').strftime('%w'))
@@ -40,18 +42,20 @@ def change_time():
     confirm_time.pack()
 
 
-def back_to_current():
+def back_to_current(): # author: Tang Yuting
     global mode, z, TIME, m_mode
     z = datetime.now()
+
     TIME = [z.year, z.month, z.day, z.hour, z.minute, z.weekday()]  # TIME = current time
     mode = 0
     m_mode = 0
     # update the information
     stall_update()
     menu_initialization()
+    time_str.set('{:4d}-{:2d}-{:2d} {:02d}:{:02d} {}'.format(TIME[0], TIME[1], TIME[2], TIME[3], TIME[4], TIME[5]))
 
 
-def stall_update():
+def stall_update(): # author: Tang Yuting
     global st
     for widget in stalls.winfo_children():  # initialize the frame whenever updated
         widget.destroy()
@@ -71,7 +75,7 @@ def stall_update():
     st.pack()
 
 
-def queue_time():
+def queue_time():  # author: Tang Yuting
     def confirm_to_change():
         t = waiting_time(inp.get())
         if t:
@@ -92,7 +96,7 @@ def queue_time():
     confirm.pack()
 
 
-def view():
+def view():  # author: Tang Yuting
     for widget in info.winfo_children():  # initialize the display area
         widget.destroy()
     info_heading = StringVar()
@@ -113,23 +117,23 @@ def view():
     op_label.pack()
 
 
-def all_mode():
-    tkinter.messagebox.showinfo('Notes', 'You are viewing all stalls and menus, regardless of time.To quit this mode, '
-                                         'by either click to select a time or going back to the current time.')
+def all_mode():  # author: Tang Yuting
+    tkinter.messagebox.showinfo('Notes', 'You are viewing all stalls and menus, regardless of time. To quit this mode, '
+                                         'click "Change Displayed Time" or "Back to Current Time."')
     global mode
     mode = 1
     stall_update()
     menu_initialization()
 
 
-def menu_initialization():
+def menu_initialization():  # author: Tang Yuting
     for widget in info.winfo_children():
         widget.destroy()
     title_info = Label(master=info, text='Click One Stall to View More Information', font='Georgia 13 italic')
     title_info.pack()
 
 
-def view_all_m():
+def view_all_m():  # author: Tang Yuting
     global m_mode, st
     m_mode = 1
     view()

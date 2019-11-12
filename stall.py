@@ -1,7 +1,9 @@
+# module author: Tang Yuting
 import tkinter.messagebox
 from checkdate import month_day_check
 
 
+# author: Tang Yuting
 def file_management():  # file operation
     def convert_string_to_tuple():
         # string operations: convert operating hour from string to integer tuple
@@ -28,12 +30,12 @@ def file_management():  # file operation
         stall_dict[name] = []
         convert_string_to_tuple()
 
-
+# author: Tang Yuting
 def get_stall(time, mode):  # time is tuple (year, month, day, hour, minute, weekday)
     global tmp
 
     def logic_check():
-        if year <= 1991 or not (isinstance(year, int)):
+        if year < 2019 or not (isinstance(year, int)):
             tkinter.messagebox.showinfo('Error!', 'Please input the valid year.')
             return False
         if not (isinstance(day, int) and month_day_check(year, month, day)):
@@ -100,7 +102,7 @@ def get_stall(time, mode):  # time is tuple (year, month, day, hour, minute, wee
 
     return stall_open
 
-
+# author: Tang Yuting
 def get_operating_hour(stall_name, time):
     for stall in tmp.keys():
         if isinstance(tmp[stall], list):
