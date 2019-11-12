@@ -1,3 +1,4 @@
+#Function by Vanessa
 def waiting_time(number):  # number: string
     try:
         num_ppl = int(number)
