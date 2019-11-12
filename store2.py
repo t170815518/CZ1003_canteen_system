@@ -1,3 +1,4 @@
+#Function done by Wee Li
 store_menu = { "Yong Tau Foo" : {"morning" : ["Bee Hoon", "Kuay Teow"],
                                  "afternoon" : ["Laska"],
                                  "monday" : ["Satay"],
